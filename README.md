@@ -28,7 +28,13 @@ Evaluation uses a chronological future-period holdout, not a random split. This 
 
 Road closures are only about 8% of the dataset, so F1, recall, precision, and PR-AUC are used instead of accuracy as the primary measures.
 
-## Run locally
+## Live demo
+
+[Open Ravis _AI.control](https://gridlockprototype-pgffvu7ddhvzzjdqw3tnh5.streamlit.app/)
+
+The live demo is the quickest way to evaluate the prototype. No local installation or model retraining is required.
+
+## Run locally (optional)
 
 ```powershell
 python -m venv venv
