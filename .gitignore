@@ -1,0 +1,17 @@
+# Local Python environment and caches
+venv/
+__pycache__/
+*.py[cod]
+
+# CatBoost training logs (the trained .cbm model is intentionally committed)
+catboost_info/
+catboost_training_run/
+
+# Local Streamlit configuration and secrets
+.streamlit/secrets.toml
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
