@@ -192,10 +192,13 @@ with st.sidebar:
     event_cause = st.selectbox("Event / incident type", causes, index=cause_index)
     junction = st.selectbox("Venue or nearest junction", junctions)
     corridor = st.selectbox("Affected corridor", corridors)
-    zone_choices = options_for("zone", ["Missing"])
+    unspecified_zone = "Not specified (dataset has no zone)"
+    zone_choices = [unspecified_zone] + options_for("zone", ["Missing"])
     inferred_zone = historical_df.loc[historical_df["junction"] == junction, "zone"].mode()
-    default_zone = inferred_zone.iloc[0] if not inferred_zone.empty and inferred_zone.iloc[0] in zone_choices else zone_choices[0]
-    zone = st.selectbox("Traffic-management zone", zone_choices, index=zone_choices.index(default_zone))
+    default_zone = inferred_zone.iloc[0] if not inferred_zone.empty and inferred_zone.iloc[0] in zone_choices else unspecified_zone
+    selected_zone = st.selectbox("Traffic-management zone", zone_choices, index=zone_choices.index(default_zone))
+    # Keep the UI wording friendly while retaining the category used at training time.
+    zone = "Missing" if selected_zone == unspecified_zone else selected_zone
     st.divider()
     st.subheader("Operational conditions")
     event_hour = st.slider("Peak activity hour", 0, 23, 18, format="%02d:00")
